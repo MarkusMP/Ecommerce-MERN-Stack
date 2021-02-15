@@ -13,9 +13,6 @@ import {
 import { PayPalButton } from "react-paypal-button-v2";
 
 const OrderScreen = ({ match, history }) => {
-  if (!userInfo) {
-    history.push("/login");
-  }
   const dispatch = useDispatch();
   const [sdkReady, setSdkReady] = useState(false);
   const orderId = match.params.id;
@@ -43,6 +40,9 @@ const OrderScreen = ({ match, history }) => {
   }
 
   useEffect(() => {
+    if (!userInfo) {
+      history.push("/login");
+    }
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get("/api/config/paypal");
       const script = document.createElement("script");
@@ -66,7 +66,7 @@ const OrderScreen = ({ match, history }) => {
         setSdkReady(true);
       }
     }
-  }, [dispatch, orderId, successPay, order, successDeliver]);
+  }, [dispatch, orderId, successPay, order, successDeliver, userInfo]);
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult);
