@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 const ProductCaousel = () => {
   const dispatch = useDispatch();
-
   const productTopRated = useSelector((state) => state.productTopRated);
   const { loading, error, products } = productTopRated;
 

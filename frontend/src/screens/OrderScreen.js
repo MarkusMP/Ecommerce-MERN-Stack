@@ -5,6 +5,7 @@ import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import Meta from "../components/Meta";
 import {
   getOrderDetails,
   payOrder,
@@ -83,6 +84,7 @@ const OrderScreen = ({ match, history }) => {
     <Message variant="danger">{error}</Message>
   ) : (
     <>
+      <Meta title={`Drone Shop | Order ${order._id}`} />
       <h1>Order {order._id}</h1>
       <Row>
         <Col md={8}>

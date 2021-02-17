@@ -14,6 +14,7 @@ export const listProducts = (keyword = "", pageNumber = "") => async (
       type: "PRODUCT_LIST_SUCCESS",
       payload: data,
     });
+    dispatch(listProductsSort("rec"));
   } catch (error) {
     dispatch({
       type: "PRODUCT_LIST_FAIL",
@@ -23,6 +24,33 @@ export const listProducts = (keyword = "", pageNumber = "") => async (
           : error.message,
     });
   }
+};
+
+export const listProductsSort = (sort) => (dispatch, getState) => {
+  const {
+    productList: { products },
+  } = getState();
+
+  let sorted = products;
+
+  if (sort === "desc") {
+    sorted = products.sort((a, b) => b.price - a.price);
+  } else if (sort === "asc") {
+    sorted = products.sort((a, b) => a.price - b.price);
+  } else if (sort === "az") {
+    sorted = products.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sort === "za") {
+    sorted = products.sort((a, b) => b.name.localeCompare(a.name));
+  } else if (sort === "pop") {
+    sorted = products.sort((a, b) => b.rating - a.rating);
+  } else if (sort === "rec") {
+    sorted = products.sort((a, b) => b.numReviews - a.numReviews);
+  }
+
+  dispatch({
+    type: "PRODUCT_SORT",
+    payload: sorted,
+  });
 };
 
 export const listProductsDetails = (id) => async (dispatch) => {

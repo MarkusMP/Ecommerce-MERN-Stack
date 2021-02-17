@@ -1,6 +1,29 @@
 main {
   min-height: 80vh;
 }
+.bg-dark {
+  background-color: #333 !important;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.form-control:focus,
+.form-control:active:focus,
+.form-control.active:focus,
+.form-control.focus,
+.form-control:active.focus,
+.form-control.active.focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
 
 h3 {
   padding: 1rem 0;
@@ -43,6 +66,7 @@ h2 {
   margin-left: auto;
   margin-right: auto;
 }
+
 .carousel a {
   margin: 0 auto;
 }
@@ -50,4 +74,18 @@ h2 {
   .carousel-caption h2 {
     font-size: 2.5vw;
   }
+}
+
+.radius {
+  border-radius: 25px;
+}
+
+.radius-input-left {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.radius-btn-right {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
